@@ -1,1 +1,1 @@
-web: python3 botty.py
+worker: python3 botty.py
