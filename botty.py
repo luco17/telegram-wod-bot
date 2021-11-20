@@ -4,7 +4,11 @@ from telegram.ext import CommandHandler
 from telegram.ext.callbackcontext import CallbackContext
 from wods import get_rowing_wods, wod_dict_to_text, get_ski_wods, get_bike_wods
 
-updater = Updater(token=os.environ.get("BOT_TOKEN"))
+PORT = int(os.environ.get('PORT', 5000))
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+APP_NAME = os.environ.get("APP_NAME")
+
+updater = Updater(token=BOT_TOKEN)
 dispatcher = updater.dispatcher
 
 
@@ -40,5 +44,5 @@ dispatcher.add_handler(ski_handler)
 bike_handler = CommandHandler('bike', bike)
 dispatcher.add_handler(bike_handler)
 
-
-updater.start_polling()
+updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=BOT_TOKEN)
+updater.bot.set_webhook(APP_NAME.join(BOT_TOKEN))
