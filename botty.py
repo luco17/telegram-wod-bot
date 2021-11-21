@@ -10,7 +10,7 @@ from wods import get_rowing_wods, wod_dict_to_text, get_ski_wods, get_bike_wods
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 APP_NAME = os.environ.get("APP_NAME")
-PORT = int(os.environ.get('PORT', 8443))
+PORT = int(os.environ.get('PORT', '8443'))
 
 
 def start(update: Update, context: CallbackContext):
@@ -59,9 +59,10 @@ def main():
     dispatcher.add_handler(CommandHandler('ski', ski))
     dispatcher.add_handler(CommandHandler('bike', bike))
 
-    updater.start_webhook(listen="0.0.0.0", port=int(PORT), url_path=BOT_TOKEN)
-
-    updater.bot.setWebhook(APP_NAME+BOT_TOKEN)
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=BOT_TOKEN,
+                          webhook_url=APP_NAME+BOT_TOKEN)
 
     updater.idle()
 
