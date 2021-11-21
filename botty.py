@@ -59,7 +59,7 @@ def main():
     dispatcher.add_handler(CommandHandler('ski', ski))
     dispatcher.add_handler(CommandHandler('bike', bike))
 
-    updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=BOT_TOKEN)
+    updater.start_webhook(listen="0.0.0.0", port=int(PORT), url_path=BOT_TOKEN)
 
     updater.bot.setWebhook(APP_NAME+BOT_TOKEN)
 
