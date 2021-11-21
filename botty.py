@@ -51,7 +51,7 @@ def bike(update, context: CallbackContext):
 
 def main():
     """start the bot"""
-    updater = Updater(token=BOT_TOKEN)
+    updater = Updater(token=BOT_TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
