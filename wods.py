@@ -1,3 +1,6 @@
+"""
+Scraping code and helper functions
+"""
 import requests
 from bs4 import BeautifulSoup
 
@@ -37,26 +40,31 @@ def get_wod(wod_id, soup):
 
 
 def get_rowing_wods():
+    '''Return rowing wods'''
     wods = scrape_wod(ROW_URL)
     return wods
 
 
 def get_bike_wods():
+    '''Return rowing wods'''
     wods = scrape_wod(BIKE_URL)
     return wods
 
 
 def get_ski_wods():
+    '''Returng ski wods'''
     wods = scrape_wod(SKI_URL)
     return wods
 
 
 def wod_dict_to_text(wod_dict):
-    text = "".join([f"{key}:\n{value}\n\n" for key, value in wod_dict.items()])
-    return text
+    '''Convert a dict of wods to text'''
+    wods_text = "".join(
+        [f"{key}:\n{value}\n\n" for key, value in wod_dict.items()])
+    return wods_text
 
 
 if __name__ == "__main__":
     row_wods = get_rowing_wods()
-    text = wod_dict_to_text(row_wods)
-    print(text)
+    TEXT = wod_dict_to_text(row_wods)
+    print(TEXT)
